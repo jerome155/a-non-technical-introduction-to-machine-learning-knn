@@ -1,31 +1,3 @@
----
-title: "kNN"
-output: 
-  html_document: default
-  html_notebook: default
-  rmarkdown::github_document: default
-author: "Jérôme Oesch, Msc. Data Science, University of Zurich 2018"
----
-
-kNN is the easiest classification algorithm as it has no explicit training
-phase, i.e. no model has to be learned and the class membership of new 
-observation can immediately be predicted given 2 model specifications of kNN:
-
-  * A distance measure, i.e. how to measure closeness of observations.
-  * A measure specifying which information to consider for the classification 
-  decision, i.e. how many neighbors.
-  
-Four simple steps:
-
-1. Compute the distance from the new point to all the other training points.
-2. Choose the number of neighbors for classification.
-3. Record the class labels of the chosen neighbors.
-4. Majority voting among the class labels of the k nearest neighbors to 
-classify the new point.
-
-kNN-Method calculating the nearest neighbour for the test_data set:
-
-```{r}
 #kNN Machine Learning Algorithm, classifying every row of an input data.frame 
 #(test_data) based on a data.frame of already available points (train_data)
 kNN <- function(test_data, train_data, k_value) {
@@ -84,11 +56,7 @@ kNN <- function(test_data, train_data, k_value) {
   #Returning the predictionOutput vector.
   return(predictionOutput)
 }
-```
 
-Function that calculates the Euclidean distance:
-
-```{r}
 euclideanDist <- function(a, b){
   d = 0
   #Iterating over the X1 and X2 coordinates (positions 3 and 4 in the 
@@ -100,15 +68,11 @@ euclideanDist <- function(a, b){
   d = sqrt(d)
   return(d)
 }
-```
 
-Getting data into R and starting the prediction process:
-
-```{r}
 train_data <- data.frame(index = c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10"),
-                        Y = c(0L, 0L, 0L, 0L, 1L, 1L, 1L, 1L, 1L, 0L),
-                        X1 = c(2, 2.8, 1.5, 2.1, 5.5, 8, 6.9, 8.5, 2.5, 7.7),
-                        X2 = c(1.5, 1.2, 1, 1, 4, 4.8, 4.5, 5.5, 2, 3.5))
+                         Y = c(0L, 0L, 0L, 0L, 1L, 1L, 1L, 1L, 1L, 0L),
+                         X1 = c(2, 2.8, 1.5, 2.1, 5.5, 8, 6.9, 8.5, 2.5, 7.7),
+                         X2 = c(1.5, 1.2, 1, 1, 4, 4.8, 4.5, 5.5, 2, 3.5))
 train_data[,3:4] <- scale(train_data[,3:4])
 
 #V1 and Y are used as placeholders, they are not required by the algorithm.
@@ -116,4 +80,3 @@ test_data <- data.frame("index"="?", "Y"="?", "X1"=-0.55, "X2"=-0.80)
 
 prediction <- kNN(test_data, train_data, 5)
 prediction
-```
