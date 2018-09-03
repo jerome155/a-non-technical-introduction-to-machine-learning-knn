@@ -72,7 +72,7 @@ kNN <- function(test_data, train_data, k_value) {
     #class label class0 or class1.
     #If the majority of neighbors are class0, then the output vector 
     #"predictionOutput" will contain a 0 at this position.
-    if(class0 > class1) {
+    if(class0 >= class1) {
       predictionOutput <- c(predictionOutput, "0") 
     }
     else if(class0 < class1){
